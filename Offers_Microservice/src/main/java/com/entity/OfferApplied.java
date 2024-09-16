@@ -9,8 +9,8 @@ import lombok.*;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "offers_applied")
 public class OfferApplied {
@@ -19,11 +19,10 @@ public class OfferApplied {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long appliedId;
 
-    @OneToOne
-    @JoinColumn(name = "offerId", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "offer_id")
     private Offer offer;
 
-    @Column(name = "booking_id")
     private Long bookingId;
 }
 

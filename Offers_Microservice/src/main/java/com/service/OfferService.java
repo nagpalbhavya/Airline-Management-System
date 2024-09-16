@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.dao.OfferDao;
 import com.entity.Offer;
 
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,10 +26,12 @@ public class OfferService {
         return offerDAO.findById(id);
     }
 
+    @Transactional
     public Offer saveOffer(Offer offer) {
         return offerDAO.save(offer);
     }
 
+    @Transactional
     public void deleteOffer(Long id) {
         offerDAO.deleteById(id);
     }

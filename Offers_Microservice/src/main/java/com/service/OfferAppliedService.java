@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.OfferAppliedDao;
+import com.dao.OfferDao;
+import com.entity.Offer;
 import com.entity.OfferApplied;
 
 import java.util.List;
@@ -26,11 +28,12 @@ public class OfferAppliedService {
         return offerAppliedDAO.findById(id);
     }
 
-    public OfferApplied saveOfferApplied(OfferApplied offerApplied) {
+    public OfferApplied saveOfferApplied(Long OfferId, Long BookingId) {
+        OfferApplied offerApplied=new OfferApplied();
+        offerApplied.setOffer(new Offer());
+        offerApplied.getOffer().setOfferId(OfferId);
+        offerApplied.setBookingId(BookingId);
         return offerAppliedDAO.save(offerApplied);
-    }
 
-    public void deleteOfferApplied(Long id) {
-        offerAppliedDAO.deleteById(id);
     }
 }

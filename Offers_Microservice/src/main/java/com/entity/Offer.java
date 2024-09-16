@@ -10,6 +10,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import java.util.*;
+
 @Data
 @Builder
 @ToString
@@ -21,27 +23,20 @@ public class Offer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @OneToOne(cascade = CascadeType.ALL)
     private Long offerId;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String offerCode;
-
-    @Column(nullable = false)
     private String description;
-
     @Column(nullable = false)
     private double discountPercentage;
-
     @Column(nullable = false)
     private LocalDateTime validFrom;
-
     @Column(nullable = false)
     private LocalDateTime validUntil;
-
     @Column(nullable = false)
     private boolean isActive;
     
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private Set<OfferApplied> offerAppliedSet;
+    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
+    private List<OfferApplied> offerAppliedList;
 }

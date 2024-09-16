@@ -27,13 +27,8 @@ public class OfferAppliedController {
         return offerAppliedService.getOfferAppliedById(id);
     }
 
-    @PostMapping("/createofferapplied")
-    public OfferApplied createOfferApplied(@RequestBody OfferApplied offerApplied) {
-        return offerAppliedService.saveOfferApplied(offerApplied);
-    }
-
-    @DeleteMapping("/deleteofferapplied/{id}")
-    public void deleteOfferApplied(@PathVariable Long id) {
-        offerAppliedService.deleteOfferApplied(id);
+    @PostMapping("/createofferapplied/{bookingId}/{offerId}")
+    public OfferApplied createOfferApplied(@PathVariable Long offerId, @PathVariable Long bookingId) {
+        return offerAppliedService.saveOfferApplied(offerId, bookingId);
     }
 }

@@ -30,9 +30,4 @@ public class OfferAppliedDaoImpl implements OfferAppliedDao {
     public OfferApplied save(OfferApplied offerApplied) {
         return offerAppliedRepository.save(offerApplied);
     }
-
-    @Override
-    public void deleteById(Long id) {
-        offerAppliedRepository.deleteById(id);
-    }
 }

@@ -10,7 +10,8 @@ public interface OfferAppliedDao {
     List<OfferApplied> findAll();
     Optional<OfferApplied> findById(Long id);
     OfferApplied save(OfferApplied offerApplied);
-    void deleteById(Long id);
+
+    //add delete offer and promotion
 }
 
 
