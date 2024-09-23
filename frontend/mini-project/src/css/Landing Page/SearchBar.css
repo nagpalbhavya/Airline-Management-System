@@ -1,0 +1,207 @@
+.date-details{
+    background-color:#FFCD4E;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items:center;
+    font-size:20px;
+    width:50vw;
+    height:60px;
+    border-radius:15px;
+}
+
+.date-details p{
+    margin-top:0.5rem;
+    margin-left:1.5rem;
+    margin-right:1.5rem;
+}
+
+.searchbar-main{
+    margin:3rem;
+}
+
+.tagline{
+    font-size:32px;
+}
+
+.datepicker{
+    height:40px;
+    border:none;
+}
+
+.from-and-to{
+    display:flex;
+    align-items:center;
+    column-gap:1.5rem;
+}
+
+.from-and-to input{
+    width:250px;
+    border:none;
+}
+
+.depart-and-return{
+    display:flex;
+    align-items: center;
+    column-gap:1.5rem;
+}
+
+.depart-and-return input{
+    width:250px;
+}
+
+.from-to-depart-return{
+    display:flex;
+    align-items: center;
+    column-gap: 2rem;
+    margin-bottom:2rem;
+}
+
+.travellers-and-class{
+    display:flex;
+    column-gap: 1.2rem;
+    align-items: center;
+}
+
+.travel-class{
+    width:285px;
+}
+
+.search-input{
+    border-radius:20px;
+    padding:1rem;
+    background-color:white;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    width:285px;
+    height:95px;
+}
+
+.input-field {
+    width: 50px;
+    height:50px;
+    text-align: center;
+    padding-left:15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 5px;
+    border:none;
+}
+
+.button {
+    background-color: #007bff; 
+    width:35px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.add-search-details-bar{
+    background-color:#6399FF;
+    min-height:400px;
+    margin-top:1.5rem;
+    border-radius:20px;
+    padding:2rem;
+    width:85vw;
+    position:relative;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.searchbar-heading{
+    margin-top:-2rem;
+    margin-bottom:2rem;
+    color:white;
+}
+
+.search-button{
+    position:absolute;
+    right:50px;
+    bottom:30px;
+    border:none;
+    padding:0.7rem 3rem;
+    width:250px;
+    border-radius:20px;
+    font-size:18px;
+    background-color:#FFCD4E;    
+}
+
+
+@media only screen and (max-width: 800px) 
+{
+
+    .from-and-to{
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        width:100%;
+        row-gap: 2rem;
+    }
+
+    .depart-and-return{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        width:100%;
+        row-gap: 2rem;
+    }
+
+    .travellers-and-class{
+        display:flex;
+        flex-direction: column;
+        row-gap: 2rem;
+        padding-bottom:5rem;
+    }
+
+    .search-button{
+        position:relative;
+        margin-left:38%;
+    }
+
+    .date-details{
+        width:97%;
+    }
+
+    .tagline{
+        font-size:25px;
+    }
+}
+
+/* Styles for devices from 601px to 1024px (iPads) */
+@media only screen and (max-width: 1400px) {
+
+    .from-to-depart-return{
+        display:flex;
+        flex-direction:column;
+        justify-content:start;
+        align-items: start;
+        row-gap: 2rem;
+    }
+    .travellers-and-class{
+        padding-bottom:5rem;
+    }
+    
+    .date-details{
+        width:93%;
+    }
+
+    .searchbar-heading{
+        margin-top:0.5rem;
+        margin-bottom:2rem;
+        color:white;
+    }
+
+    .tagline{
+        font-size:28px;
+    }
+}

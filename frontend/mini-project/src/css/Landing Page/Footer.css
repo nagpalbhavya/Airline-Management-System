@@ -1,0 +1,14 @@
+.footer-logo{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size:35px;
+    color:white;
+}
+
+.footer-main{
+    background-color: #3E3E3E;
+    height:200px;
+    padding:3rem;
+    margin-top:10rem;
+}

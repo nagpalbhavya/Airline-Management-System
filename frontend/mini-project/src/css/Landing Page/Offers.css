@@ -1,0 +1,50 @@
+.offer-main{
+    margin:3rem;
+    margin-top:5rem;
+}
+
+.offers{
+    display:flex;
+    row-gap:2rem;
+    column-gap:2rem;
+    flex-wrap:wrap;
+    margin-top:3rem;
+    color:black;
+}
+
+.offer-container{
+    background-color:#FFCD4E; 
+    width:250px;
+    max-width:300px;
+    height:180px;
+    padding:1rem;
+    border-radius:20px;
+    text-align:left;
+}
+
+.offer-description{
+    font-size:22px;
+    padding:0.5rem 1rem;
+}
+
+.offer-code{
+    font-size:20px;
+}
+
+.offer-and-code{
+    background-color:#007bff;
+    color:white;
+    border-radius:15px;
+    padding:0.5rem 1rem;
+    text-align:center;
+}
+
+
+
+@media only screen and (max-width: 800px) 
+{
+    .offers{
+        justify-content: center;
+        align-items: center;
+    }
+}

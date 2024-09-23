@@ -1,0 +1,86 @@
+.login-cont{
+    width:100vw;
+    height:100vh;
+    padding-top:4rem;
+    background-image: linear-gradient(
+        140deg,
+        hsl(205deg 75% 54%) 0%,
+        hsl(207deg 68% 56%) 8%,
+        hsl(208deg 61% 58%) 17%,
+        hsl(209deg 55% 58%) 25%,
+        hsl(210deg 48% 59%) 33%,
+        hsl(211deg 42% 59%) 42%,
+        hsl(212deg 36% 59%) 50%,
+        hsl(213deg 30% 59%) 58%,
+        hsl(213deg 24% 59%) 67%,
+        hsl(214deg 19% 59%) 75%,
+        hsl(215deg 14% 58%) 83%,
+        hsl(215deg 9% 58%) 92%,
+        hsl(216deg 5% 57%) 100%
+      );  
+}
+
+.login-main{
+    padding:3rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    column-gap: 15rem;
+}
+
+.register-image{
+    height:580px;
+    width:480px;
+    border-radius:20px;
+}
+.login-left-side{
+    width:25vw;
+    height:400px;
+    display:flex;
+    flex-direction: column;
+    row-gap:2rem;
+}
+
+.login-right-side{
+    position:relative;
+}
+
+.login-back-to-website-button{
+    border:none;
+    padding:0.5rem 1.2rem;
+    border-radius:20px;
+    color:black;
+    font-size:16px;
+    position:absolute;
+    right:20px;
+    top:40px;
+    background-color:rgba(255,255,255,0.6);
+}
+
+.login-button{
+    width:100%;
+}
+
+
+.error{
+    color:rgb(146, 0, 0);
+}
+
+.logo{
+    color:white;
+    position:absolute;
+    left:15px;
+    top:15px;
+}
+
+
+
+@media (max-width: 1200px) {
+    .login-right-side{
+        display:none;
+    }
+
+    .login-left-side{
+        width:50vw;
+    }
+}
