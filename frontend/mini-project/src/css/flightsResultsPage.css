@@ -1,0 +1,276 @@
+.results-main-main{
+    display:flex;
+    flex-direction:column;
+    background-color:#FEFFDD;
+    height:100vh;
+}
+
+.results-main{
+    display:flex;
+    background-color:#6399FF;
+    margin-top:1.5rem;
+    border-radius:20px;
+    padding:1.5rem;
+    justify-content:space-evenly;
+    display:relative;
+    margin-bottom:80px;
+}
+
+.results-from-to-depart-return{
+    display:flex;
+}
+
+.results-from-and-to{
+    display:flex;
+    flex-direction:row;
+    column-gap:2rem;
+    margin-right:32px;
+}
+
+.results-travellers-and-class{
+    display:flex;
+    flex-direction:row;
+    column-gap:2rem;
+    margin-right:2rem;
+}
+
+.results-search-button{
+    border:none;
+    width:100px;
+    height:60px;
+    align-self:flex-end;
+    text-align:center;
+    border-radius:20px;
+    font-size:18px;
+    background-color:#FFCD4E;    
+}
+
+.results-search-input{
+    border-radius:20px;
+    padding:1rem;
+    background-color:white;
+}
+
+.results-depart-and-return{
+    margin-right:2rem;
+}
+
+.flight-div{
+    width:50vw;
+    border:2px solid black;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content: space-evenly;
+    background-color:white;
+    -webkit-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+
+}
+
+.airline-logo{
+    width:50px;
+}
+
+.hls{
+    display:none;
+}
+
+.flight-logo-and-name{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    column-gap:1rem;
+}
+
+.flight-details{
+    display:flex;
+    flex-direction:row;
+    padding-top:25px;
+}
+
+.source-details{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.destination-details{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.horizontal-line{
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    row-gap:0px;
+}
+
+.flight-main{
+    display:flex;
+    column-gap:3rem;
+    justify-content:center;
+}
+
+.big-screen-cost-details{
+    width:15vw;
+    border:2px solid black;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background-color:white;
+}
+
+.big-book-button{
+    border:none;
+    background-color:#FFCD4E;
+    font-size:18px;
+    padding:10px 45px;
+    border-radius:15px;
+}
+
+.cost-details{
+    display:none;
+}
+
+@media only screen and (max-width: 1400px) {
+
+    .results-from-and-to{
+        display:flex;
+        flex-direction:row;
+        column-gap:2rem;
+        margin-right:32px;
+    }
+    .results-main{
+        scale:0.9;
+    }
+    .big-screen-cost-details{
+        display:none;
+    }
+
+    .flight-div{
+        width:75vw;
+    }
+
+    .cost-details{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .book-button{
+        border:none;
+        background-color:#FFCD4E;
+        font-size:16px;
+        padding:10px 15px;
+        border-radius:15px;
+
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .results-from-and-to{
+        display:flex;
+        flex-direction:row;
+        column-gap:2rem;
+        width:300px;
+    }
+    .results-main{
+        scale:0.7;
+        width:120vw;
+        margin-left:-8rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) 
+{
+    .results-from-and-to{
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        width:280px;
+        row-gap: 2rem;
+        margin-bottom:2rem;
+    }
+
+    .results-from-to-depart-return{
+        display:flex;
+        flex-direction: column;
+        width:280px;
+        justify-content: center;
+    }
+
+    .results-depart-and-return{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        width:280px;
+        row-gap: 2rem;
+        margin-bottom:1rem;
+    }
+
+    .results-travellers-and-class{
+        display:flex;
+        flex-direction: column;
+        row-gap: 2rem;
+        padding-bottom:2rem;
+        width:260px;
+    }
+
+    .results-search-button{
+        position:relative;
+        margin-left:38%;
+    }
+
+    .results-main{
+        scale:1;
+        width:95vw;
+        margin-left:0;
+        flex-direction:column;
+        row-gap:1rem;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .flight-div{
+        width:95vw;
+    }
+
+    .flight-logo-and-name h2{
+        font-size:24px;
+    }
+
+    .hlb{
+        display:none;
+    }
+    .hls{
+        display:flex;
+    }
+
+    .airline-logo{
+        width:35px;
+    }
+
+    .cost-details h3{
+        font-size:20px;
+    }
+
+    .cost-details{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .source-details h2{
+        font-size:22px;
+    }
+    .destination-details h2{
+        font-size:22px;
+    }
+}

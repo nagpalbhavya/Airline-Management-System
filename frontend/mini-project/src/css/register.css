@@ -77,10 +77,24 @@
     top:15px;
 }
 
+.register-logo{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size:35px;
+    padding-top:30px;
+    display:none;
+    padding-left:30px;
+}
+
 
 
 @media (max-width: 1200px) {
     .left-side{
         display:none;
+    }
+
+    .register-logo{
+        display:block;
     }
 }

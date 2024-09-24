@@ -1,7 +1,6 @@
 .login-cont{
     width:100vw;
     height:100vh;
-    padding-top:4rem;
     background-image: linear-gradient(
         140deg,
         hsl(205deg 75% 54%) 0%,
@@ -73,6 +72,16 @@
     top:15px;
 }
 
+.login-logo{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size:35px;
+    padding-top:30px;
+    display:none;
+    padding-left:30px;
+}
+
 
 
 @media (max-width: 1200px) {
@@ -82,5 +91,9 @@
 
     .login-left-side{
         width:50vw;
+    }
+
+    .login-logo{
+        display:block;
     }
 }

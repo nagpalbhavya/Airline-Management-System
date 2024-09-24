@@ -1,35 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import '../../css/Landing Page/SearchBar.css'
+import '../css/flightsResultsPage.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAirports } from '../../redux/AirportSlice';
+import { fetchAirports } from '../redux/AirportSlice';
 
-const SearchBar = () => {
-  const today=new Date();
-  const monthNames = ["January", "February", "March", "April", 
-    "May", "June","July", "August", "September", 
-    "October", "November", "December"
-];
-const weekdayNames = [
-  "Sunday", "Monday", "Tuesday", "Wednesday", 
-  "Thursday", "Friday", "Saturday"
-];
+const FlightsResultsPage = () => {
 
-  const date=today.getDate();
-  const month=today.getMonth();
-  const year=today.getFullYear();
-  const day=today.getDay();
-
-  const dispatch=useDispatch();
-  const airports=useSelector((state)=>state.airport.airports)
+    const dispatch=useDispatch();
+  //const airports=useSelector((state)=>state.airport.airports)
+  const airports=['Bangalore','Delhi','Mumbai','Chennai']
   console.log(airports)
-  //const airports=['Bangalore','Delhi','Mumbai','Chennai']
 
 
   const [travellers, setTravellers]=useState(1);
-  const [source, setSource]=useState('')
-  const [destination, setDestination]=useState('')
-  const [travelDate, setTravelDate]=useState('');
-  const [travelClass, setTravelClass]=useState('');
+  const [source, setSource]=useState('Bangalore')
+  const [destination, setDestination]=useState('Delhi')
+  const [travelDate, setTravelDate]=useState('2024-09-25');
+  const [travelClass, setTravelClass]=useState('1');
   const [error, setError]=useState('')
   const [filteredAirports, setFilteredAirports]=useState([])
   const [isFocussed, setIsFocussed]=useState(false)
@@ -55,9 +41,9 @@ const weekdayNames = [
   }
 
   const [formData, setFormData]=useState({
-    source:'',
-    destination:'',
-    date:'',
+    source:'Bangalore',
+    destination:'Delhi',
+    date:'2024-09-25',
     numPassengers:1,
     travelClass:'ECOMOMY',
   })
@@ -74,11 +60,11 @@ const weekdayNames = [
     //setFormData({...formData, source:input})
 
     // const matches=airports.filter(airport=>{
-    //   airport.city.toLowerCase().includes(input.toLowerCase())||
+    //   airport.name.toLowerCase().includes(input.toLowerCase())||
     //   airport.uniqueCode.toLowerCase().includes(input.toLowerCase())
-   // })
+    // })
 
-    setFilteredAirports(airports)
+    //setFilteredAirports(airports)
   }
 
   const handleDestinationChange=(e)=>{
@@ -88,19 +74,19 @@ const weekdayNames = [
     //setFormData({...formData, destination:input})
 
     // const matches=airports.filter(airport=>{
-    //   airport.city.toLowerCase().includes(input.toLowerCase())||
+    //   airport.name.toLowerCase().includes(input.toLowerCase())||
     //   airport.uniqueCode.toLowerCase().includes(input.toLowerCase())
     // })
 
-    setFilteredAirports(airports)
+    // setFilteredAirports(airports)
   }
 
   const filterAirports=(value, type)=>{
     setError('');
     const filtered=airports.filter(airport=>
-      (airport.city.toLowerCase().includes(value.toLowerCase())&&
-      (type==='source'?airport.city!==destination:airport.city!==source))
-    ).slice(0,3)
+      (airport.toLowerCase().includes(value.toLowerCase())&&
+      (type==='source'?airport!==destination:airport!==source))
+    ).slice(0,3);
 
     if(filtered.length===0&&value.length>0)
       setError('Airport not found')
@@ -128,59 +114,44 @@ const weekdayNames = [
     if(!formData.source||!formData.destination||!formData.date)
       setError('All fields are required.')
   }
-
   return (
-    <div className='searchbar-main'>
-      <div className='searchbar-cont'>
-        <p className='tagline'>Planning to travel? We've got you
-          covered with flights at the best price.
-        </p>
-        <div className='date-details'>
-          <p>{monthNames[month]} {date}, {year}</p>
-          <p>{weekdayNames[day]}</p>
-        </div>
-        <div className='add-search-details-bar'>
-            <h4 className='searchbar-heading'>Search for flights</h4>
-            <form onSubmit={handleSearch}>
-              <div>
-                <div className='from-to-depart-return'>
-                <div className='from-and-to'>
-                  <div className='search-input'>
+    <div className='results-main-main'>
+        <form onSubmit={handleSearch}>
+              <div className='results-main'>
+                <div className='results-from-to-depart-return'>
+                <div className='results-from-and-to'>
+                  <div className='results-search-input'>
                   <label for='form'>From</label>
                       <input type="text" placeholder='Choose Aiport, City, Unique Co..' className='form-control' name='source' value={source} onChange={handleSourceChange} onFocus={handleFocus} onBlur={handleBlur}></input>
                       {isFocussed && source &&(
                         <div style={{marginTop:'1rem', display:'absolute'}}>
                           {filteredAirports.length>0 && !error?(
-                            filteredAirports.map(airport=><div key={airport.city}>{airport.city}</div>)):
+                            filteredAirports.map(airport=><div key={airport}>{airport}</div>)):
                             (<div>{error}</div>)}
                             </div>
                           )}
                   </div>
-                  <div className='search-input'>
+                  <div className='results-search-input'>
                   <label for='form'>To</label>
                       <input type="text" placeholder='Choose Aiport, City, Unique Co..' className='form-control' name='destination' value={destination} onChange={handleDestinationChange} onFocus={handleFocus} onBlur={handleBlur}></input>
                       {isFocussed && destination &&(
                         <div>
                           {filteredAirports.length>0 && !error?(
-                            filteredAirports.map(airport=><div key={airport.city}>{airport.city}</div>)):
+                            filteredAirports.map(airport=><div key={airport}>{airport}</div>)):
                             (<div>{error}</div>)}
                             </div>
                           )}
                   </div>
                   </div>
-                  <div className='depart-and-return'>
-                    <div style={{display:'flex', flexDirection:'column'}} className='search-input'>
+                  <div className='results-depart-and-return'>
+                    <div style={{display:'flex', flexDirection:'column'}} className='results-search-input'>
                     <label for='depart'>Depart</label>
                     <input type='date' name="date" className='datepicker' value={formData.date} onChange={handleChange}></input>
                     </div>
-                    <div style={{display:'flex', flexDirection:'column'}} className='search-input'>
-                    <label for="arrive">Arrive</label>
-                    <input type='date' name='to' className='datepicker'></input>
-                    </div>
                 </div>
               </div>
-              <div className='travellers-and-class'>
-                <div className='input-container search-input'>
+              <div className='results-travellers-and-class'>
+                <div className='input-container results-search-input'>
                 <label for="travellers" style={{marginRight:'1rem'}}>Travellers</label>
                 <button type='button' className="button" onClick={decrement}>-</button>
                 <input
@@ -192,7 +163,7 @@ const weekdayNames = [
                   />
                   <button type='button' className="button" onClick={increment}>+</button>
                   </div>
-                  <div className='search-input travel-class'>
+                  <div className='results-search-input travel-class'>
                   <label for='travelClass'>Travel Class</label>
                   <select class="form-select" name='travelClass' aria-label="choose travel class" value={formData.travelClass} onChange={handleChange}>
                   <option selected value="ECONOMY">ECOMOMY</option>
@@ -201,13 +172,44 @@ const weekdayNames = [
                 </select>
                   </div>
                 </div>
+                <button className='results-search-button'>Search</button>
               </div>
-              <button className='search-button'>Search</button>
             </form>
-        </div>
-      </div>
+
+            <div className='flight-main'> 
+                <div className='flight-div'>
+                  <div className='flight-logo-and-name'>
+                    <img src="indigo-logo.png" className='airline-logo'/>
+                    <h2>Indigo</h2>
+                  </div>
+                  <div className='flight-details'>
+                    <div className='source-details'>
+                        <h2>10:15</h2>
+                        <h6>BRL</h6>
+                    </div>
+                    <div className='horizontal-line'>
+                        <p className='hlb'>Direct</p>
+                        <p className='hlb'>-----------------------------------------------</p>
+                        <p className='hls'>-----------------</p>
+                        <p className='hlb'>Duration</p>
+                    </div>
+                    <div className='destination-details'>
+                        <h2>12:45</h2>
+                        <h6>DEL</h6>
+                    </div>
+                  </div>
+                  <div className='cost-details'>
+                        <h3>$ 8083</h3>
+                        <button className='book-button'>Book Now</button>
+                  </div>
+                </div>
+                <div className='big-screen-cost-details'>
+                <h3>$ 8083</h3>
+                <button className='big-book-button'>Book Now</button>
+                </div>
+            </div>
     </div>
   )
 }
 
-export default SearchBar
+export default FlightsResultsPage

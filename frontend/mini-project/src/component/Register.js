@@ -3,7 +3,7 @@ import "../css/register.css"
 import Logo from './Logo'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser } from '../redux/userSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
 
@@ -16,7 +16,7 @@ const Register = () => {
     })
 
     const dispatch=useDispatch();
-    //const navigate=useNavigate();
+    const navigate=useNavigate();
     const userStatus=useSelector((state)=>state.user.status)
     const error=useSelector((state)=>state.user.error);
     const registrationMessage=useSelector((state)=>state.user.message)
@@ -72,10 +72,11 @@ const Register = () => {
 
   return (
     <div className='cont'>
+        <Link to="/" style={{textDecoration:'none', color:'black'}}><h3 className='login-logo'>SUNFLY</h3></Link>
         <div className='main'>
             <div className='left-side'>
                 <div className='logo'><Logo/></div>
-                <button className='back-to-website-button'>Back to website</button>
+                <button className='back-to-website-button' onClick={()=>{navigate("/")}}>Back to website</button>
                 {/* add logo, back to website button */}
                 <img src="registerImage.png" className='register-image'/>
             </div>

@@ -4,6 +4,7 @@ import Logo from './Logo'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser, validateUser } from '../redux/userSlice'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
 
@@ -13,7 +14,7 @@ const Login = () => {
     })
 
     const dispatch=useDispatch();
-    //const navigate=useNavigate();
+    const navigate=useNavigate();
     const validation=useSelector((state)=>state.user.validation)
     const validationMessage=useSelector((state)=>state.user.validationMessage)
     const error=useSelector((state)=>state.user.error);
@@ -57,6 +58,7 @@ const Login = () => {
 
   return (
     <div className='login-cont'>
+                <Link to="/" style={{textDecoration:'none', color:'black'}}><h3 className='login-logo'>SUNFLY</h3></Link>
         <div className='login-main'>
             <div className='login-left-side'>
             <div className='login-register-headings'>
@@ -78,12 +80,17 @@ const Login = () => {
                     {console.log(validationMessage)}
                     {validationMessage&&<p style={{fontSize:'18px'}}>{validationMessage}</p>}
                     </div>
+
+                    <div className='forgot-reset-password'>
+                       <Link to="/reset-password" style={{color:'black'}}><p style={{marginBottom:'5px'}}>forgot password</p></Link>
+                       <Link to="/reset-password"><p style={{marginBottom:'20px', color:'black'}}>reset password</p></Link>
+                    </div>
                     <button className='btn btn-primary login-button'>Login</button>
                 </form>
             </div>
             <div className='login-right-side'>
             <div className='logo'><Logo/></div>
-                <button className='login-back-to-website-button'>Back to website</button>
+                <button className='login-back-to-website-button' onClick={()=>{navigate("/")}}>Back to website</button>
                 {/* add logo, back to website button */}
                 <img src="registerImage.png" className='register-image'/>
             </div>
