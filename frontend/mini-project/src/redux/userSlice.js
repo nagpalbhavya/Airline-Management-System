@@ -19,6 +19,12 @@ export const validateUser=createAsyncThunk('user/validate', async(credentials)=>
       }
 })
 
+export const resetPassword=createAsyncThunk('user/reset-password', async(credentials)=>{
+    console.log(credentials)
+    const response = await axios.put('http://localhost:8085/users/reset-password',credentials)
+    return response.data;
+    })
+
 const userSlice=createSlice({
     name:'user',
     initialState:{
@@ -60,10 +66,11 @@ const userSlice=createSlice({
         builder.addCase(validateUser.fulfilled, (state, action)=>{
             state.status='succeded'
             console.log(action.payload);
-            if(action.payload==="SUCCESS")
+            if(action.payload!=null)
             {
                 state.validation=true;
                 state.validationMessage="Login Successful"
+                state.user=action.payload
             }
             else
             {
@@ -72,6 +79,29 @@ const userSlice=createSlice({
             }
         })
         builder.addCase(validateUser.rejected, (state,action)=>{
+            state.status='failed'
+            state.error=action.error.message;
+            state.validation=false;
+            state.validationMessage="Something went wrong.."
+        })
+        builder.addCase(resetPassword.pending, (state)=>{
+            state.status='loading'
+        })
+        builder.addCase(resetPassword.fulfilled, (state, action)=>{
+            state.status='succeded'
+            console.log(action.payload);
+            if(action.payload=='Password reset successful')
+            {
+                state.validation=true;
+                state.validationMessage=action.payload;
+            }
+            else
+            {
+                state.validation=false;
+                state.validationMessage=action.payload;
+            }
+        })
+        builder.addCase(resetPassword.rejected, (state,action)=>{
             state.status='failed'
             state.error=action.error.message;
             state.validation=false;

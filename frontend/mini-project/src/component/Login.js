@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import "../css/login.css"
 import Logo from './Logo'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import { addUser, validateUser } from '../redux/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const Login = () => {
 
@@ -13,10 +15,13 @@ const Login = () => {
         password:''
     })
 
+
     const dispatch=useDispatch();
     const navigate=useNavigate();
+    const location=useLocation();
     const validation=useSelector((state)=>state.user.validation)
-    const validationMessage=useSelector((state)=>state.user.validationMessage)
+    let validationMessage=useSelector((state)=>state.user.validationMessage)
+    const user=useSelector((state)=>state.user.user)
     const error=useSelector((state)=>state.user.error);
 
     // useEffect(()=>{
@@ -27,6 +32,8 @@ const Login = () => {
     // })
 
     const validEmail=new RegExp('^[^\\s@]+@[^\\s@]+\.[^\\s@]+$')
+
+    const { from } = location.state || { from: { pathname: '/' } };
 
     const [errors, setErrors]=useState({})
 
@@ -52,7 +59,12 @@ const Login = () => {
         {
             dispatch(validateUser(formData))
             if(validation)
-            setFormData({email:'',password:''})
+            {
+                setFormData({email:'',password:''})
+                validationMessage='';
+                Cookies.set('user',JSON.stringify(user))
+                navigate(from)
+            }
         }
     }
 
@@ -63,7 +75,7 @@ const Login = () => {
             <div className='login-left-side'>
             <div className='login-register-headings'>
                     <h3>Welcome back</h3>
-                    <p>New here ? Let's get you <span>registered</span>!</p>
+                    <p>New here ? Let's get you <Link to='/register' className='login-register-span'>registered</Link>!</p>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className='form-floating mb-4'>
@@ -82,8 +94,8 @@ const Login = () => {
                     </div>
 
                     <div className='forgot-reset-password'>
-                       <Link to="/reset-password" style={{color:'black'}}><p style={{marginBottom:'5px'}}>forgot password</p></Link>
-                       <Link to="/reset-password"><p style={{marginBottom:'20px', color:'black'}}>reset password</p></Link>
+                       <Link to="/forgot-password" style={{color:'black', textDecoration:'none'}}><p style={{marginBottom:'5px'}}>forgot password</p></Link>
+                       <Link to="/reset-password" style={{color:'black', textDecoration:'none'}}><p style={{marginBottom:'20px'}}>reset password</p></Link>
                     </div>
                     <button className='btn btn-primary login-button'>Login</button>
                 </form>

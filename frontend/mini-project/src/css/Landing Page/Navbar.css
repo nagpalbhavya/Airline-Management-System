@@ -3,6 +3,31 @@
     font-weight: 600;
     font-style: normal;
     font-size:35px;
-    padding-top:2rem;
-    padding-left:3rem;
 }
+
+.navbar-main{
+    padding-right:5rem;
+    padding-left:5rem;
+    padding-top:2rem;
+}
+
+button{
+    padding:0.5rem 1rem;
+    border:none;
+    border-radius:20px;
+}
+
+.navbar-login{
+    background-color:#007bff;
+    color:white;
+}
+
+.navbar-login:hover{
+    background-color:#0056b3;
+}
+
+.navbar-logout{
+    background-color:rgb(240, 105, 105);
+    color:white;
+}
+

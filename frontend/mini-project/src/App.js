@@ -9,6 +9,9 @@ import ResetPassword from './component/ResetPassword'
 import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import FlightDetail from './component/FlightDetail';
+import Payment from './component/payment-component/Payment'
+import Checkout from './component/Checkout'
 
 function App() {
   return (
@@ -19,6 +22,10 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/forgot-password" element={<ForgotPassword/>}/>
           <Route path="/reset-password" element={<ResetPassword/>}/>
+          <Route path="/flights" element={<FlightsResultsPage/>}/>
+          <Route path="/flights/:flightId" element={<FlightDetail/>}/>
+          <Route path='/checkout' element={<Checkout/>}/>
+          {/* <Route path="/payment" element={<Payment/>}/> */}
         </Routes>
     </Router>
   );

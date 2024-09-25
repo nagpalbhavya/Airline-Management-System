@@ -1,0 +1,160 @@
+   /* Main container styling */
+.checkout-container {
+    margin-bottom: 40px;
+    padding: 40px;
+    background-color: #fffbd8;
+    width: 80%;
+    max-width: 1200px;
+    min-width: 300px;
+    height: auto;
+  }
+  
+  
+  /* Branding */
+  .brand-title {
+    font-size: 33px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .checkout-heading {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .checkout-description {
+    font-size: 15px;
+    font-weight: normal;
+    text-align: left;
+  }
+  
+  /* Flight details section */
+
+  .flight-details-section .section-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .flight-details-card {
+    border-radius: 40px;
+    width: 500px;
+    height: 120px;
+  }
+
+  .flight-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .airline-info {
+    text-align: left;
+  }
+  
+  .airline-name {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: initial;
+  }
+  
+  .flight-time {
+    font-size: 25px;
+  }
+  
+  /* Passenger details section */
+  .passenger-details-section .section-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .offers-details-section .section-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .passenger-details-card {
+    background-color: #70a6ff;
+    color: white;
+  }
+  
+  .passenger-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .passenger-name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .passenger-info {
+    color: black;
+    font-weight: bold;
+  }
+  
+  /* Offers & discounts */
+  .offers-discounts-card {
+    background-color: #ffc721;
+    padding: 5px;
+    width: 250px;
+    height: 150px;
+  }
+  
+  .offer-text {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  /* Fare summary section */
+  .fare-summary-card {
+    background-color: #1a3365;
+    color: rgb(226, 218, 218);
+    border-radius: 17px;
+    padding: 20px;
+    position:relative;
+  }
+  
+  .fare-summary-title {
+    color: rgb(226, 218, 218);
+    font-size: 30px;
+    font-weight: 500;
+  }
+  
+  .fare-item {
+    color: rgb(226, 218, 218);
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .fare-price {
+    color: rgb(226, 218, 218);
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+  .fare-total {
+    color: rgb(226, 218, 218);
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .payment-button {
+    color: black;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 15px;
+    margin-top:3rem;
+  }
+  
+  

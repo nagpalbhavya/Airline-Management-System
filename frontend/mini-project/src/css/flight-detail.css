@@ -1,0 +1,172 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff8d4;
+  margin: 0;
+  padding: 0;
+}
+
+.detail-main-container {
+  padding: 20px;
+}
+
+.detail-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.detail-left-column {
+  width: 60%;
+}
+
+.detail-right-column {
+  width: 35%;
+}
+
+/* .flight-details {
+  width: 100%;
+  padding: 15px;
+}
+
+.flight-logo-section img {
+  width: 35px;
+  height: 35px;
+}
+
+.flight-info {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.flight-dates {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.time {
+  font-size: 20px;
+}
+
+.baggage-details {
+  flex-direction: column;
+  align-items: flex-start;
+} */
+ 
+
+@media (max-width: 768px) {
+  .detail-content {
+    flex-direction: column;
+  }
+
+  .detail-left-column,
+  .detail-right-column {
+    width: 100%;
+  }
+}
+
+/* Header Styles */
+.detail-header {
+  text-align: left;
+  margin: 20px 0;
+}
+
+.detail-header h1 {
+  font-size: 28px;
+  color: black;
+}
+
+
+/* PassengerDetails Styles */
+.detail-passenger-details {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.detail-passenger-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.detail-passenger-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.detail-passenger-form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* FareSummary Styles */
+.detail-fare-summary {
+  background-color: #001f54;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+.detail-fare-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.detail-total-amount {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* CheckoutButton Styles */
+.detail-checkout-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.detail-checkout-button button {
+  background-color: #ffc107;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+/* }
+.flight-details {
+  width: 100%;
+  padding: 15px;
+}
+
+.flight-logo-section img {
+  width: 30px;
+  height: 30px;
+}
+
+.flight-info {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.flight-dates {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.time {
+  font-size: 22px;
+}
+
+.baggage-details {
+  flex-direction: column;
+  align-items: flex-start;
+} */
+}

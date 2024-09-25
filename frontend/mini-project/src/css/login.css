@@ -82,6 +82,19 @@
     padding-left:30px;
 }
 
+.login-register-span{
+    text-decoration: none;
+    color:black;
+}
+
+.login-register-span:hover{
+    text-decoration: underline;
+}
+
+.forgot-reset-password:first-child:hover{
+    text-decoration:underline;
+}
+
 
 
 @media (max-width: 1200px) {

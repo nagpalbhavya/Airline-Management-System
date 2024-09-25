@@ -24,9 +24,8 @@ public class Passenger
     @JoinColumn(name="booking_id", nullable = false)
     private Booking booking;
 
-    private String firstName;
-    private String lastName;
-    private LocalDateTime dob;
+    private String name;
+    private String email;
     private String travelClass;
     private int baggageAllowance;
 }

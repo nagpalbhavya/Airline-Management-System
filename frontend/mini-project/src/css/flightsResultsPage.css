@@ -3,12 +3,23 @@
     flex-direction:column;
     background-color:#FEFFDD;
     height:100vh;
+    padding-top:50px;
+}
+
+.results-logo{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size:35px;
+    background-color:#FEFFDD;
+    padding-top:30px;
+    padding-left:50px;
 }
 
 .results-main{
     display:flex;
     background-color:#6399FF;
-    margin-top:1.5rem;
+    padding-top:1.5rem;
     border-radius:20px;
     padding:1.5rem;
     justify-content:space-evenly;

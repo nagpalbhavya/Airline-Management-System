@@ -29,9 +29,8 @@ public class PassengerDaoImpl implements PassengerDao
                 Passenger passenger=new Passenger();
                 passenger.setBooking(booking);
                 passenger.setPassengerId(p.getPassengerId());
-                passenger.setFirstName(p.getFirstName());
-                passenger.setLastName(p.getLastName());
-                passenger.setDob(p.getDob());
+                passenger.setName(p.getName());
+                passenger.setEmail(p.getEmail());
                 passenger.setBaggageAllowance(p.getBaggageAllowance());
                 passenger.setTravelClass(p.getTravelClass());
                 passengerRepo.save(passenger);

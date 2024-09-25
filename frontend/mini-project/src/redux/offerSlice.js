@@ -10,6 +10,7 @@ const offerSlice=createSlice({
     name:'offers',
     initialState:{
         offers:[],
+        offerApplied:null,
         status:'idle',
         error:null,
     },

@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react'
 import '../../css/Landing Page/SearchBar.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAirports } from '../../redux/AirportSlice';
-
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { searchFlights } from '../../redux/FlightSlice';
+import { setForm } from '../../redux/FormDataSlice';
 const SearchBar = () => {
   const today=new Date();
   const monthNames = ["January", "February", "March", "April", 
@@ -18,6 +21,21 @@ const weekdayNames = [
   const month=today.getMonth();
   const year=today.getFullYear();
   const day=today.getDay();
+  const hour=today.getHours();
+
+  const minDate=new Date().toISOString().split('T')[0];
+  const navigate=useNavigate();
+
+  let greeting=''
+  if(hour<12)
+    greeting='Good Morning'
+  else if(hour<18)
+    greeting='Good Afternoon'
+  else
+  greeting='Good Evening'
+
+  const userFromCookie = Cookies.get('user');
+  const user = userFromCookie ? JSON.parse(userFromCookie) : null;
 
   const dispatch=useDispatch();
   const airports=useSelector((state)=>state.airport.airports)
@@ -31,16 +49,10 @@ const weekdayNames = [
   const [travelDate, setTravelDate]=useState('');
   const [travelClass, setTravelClass]=useState('');
   const [error, setError]=useState('')
+  const [formError, setFormError]=useState({})
   const [filteredAirports, setFilteredAirports]=useState([])
-  const [isFocussed, setIsFocussed]=useState(false)
-
-  const handleFocus=()=>{
-    setIsFocussed(true);
-  }
-
-  const handleBlur=()=>{
-    setIsFocussed(false);
-  }
+  const [toFocussed, setToFocussed]=useState(false)
+  const [fromFocussed, setFromFocussed]=useState(false)
 
   useEffect(()=>{
     dispatch(fetchAirports())
@@ -58,8 +70,8 @@ const weekdayNames = [
     source:'',
     destination:'',
     date:'',
-    numPassengers:1,
-    travelClass:'ECOMOMY',
+    numPassengers:0,
+    travelClass:'ECONOMY',
   })
 
   const handleChange=(e)=>{
@@ -78,7 +90,7 @@ const weekdayNames = [
     //   airport.uniqueCode.toLowerCase().includes(input.toLowerCase())
    // })
 
-    setFilteredAirports(airports)
+    //setFilteredAirports(airports)
   }
 
   const handleDestinationChange=(e)=>{
@@ -92,7 +104,7 @@ const weekdayNames = [
     //   airport.uniqueCode.toLowerCase().includes(input.toLowerCase())
     // })
 
-    setFilteredAirports(airports)
+    //setFilteredAirports(airports)
   }
 
   const filterAirports=(value, type)=>{
@@ -108,32 +120,71 @@ const weekdayNames = [
     setFilteredAirports(filtered)
   }
 
-
-  const handleInput=(type)=>{
-    if(type==='source'&&source===destination)
+  const handleSourceBlur=()=>{
+    let newError={}
+    setFromFocussed(false)
+    const res=airports.find(airport=>airport.city.toLowerCase()===source.toLowerCase())
+    if(res==null)
     {
-      setError('Source and destination cannot be the same')
+      newError['source']='Source not found'
+      setFormError((prevErrors)=>({...prevErrors, ...newError}))
     }
-    else if(type==='destination'&&source===destination)
+    else
     {
-      setError('Source and destination cannot be the same')
+      setSource(res.city)
+      setFormData({...formData, source})
+      newError['source']=null
+      setFormError((prevErrors)=>({...prevErrors, ...newError}))
     }
   }
+
+  const handleDestinationeBlur=()=>{
+    let newError={}
+    setToFocussed(false)
+    const res=airports.find(airport=>airport.city.toLowerCase()===destination.toLowerCase())
+    if(res==null)
+    {
+      newError['destination']='Destination not found'
+      setFormError((prevErrors)=>({...prevErrors, ...newError}))
+    }
+    else
+    {
+      setDestination(res.city)
+      setFormData({...formData, destination})
+      newError['destination']=null
+      setFormError((prevErrors)=>({...prevErrors, ...newError}))
+    }
+  }
+
+  useEffect(()=>{
+    setFormData({...formData, numPassengers:travellers})
+  },[travellers])
+
+
 
   const handleSearch=(e)=>{
     e.preventDefault();
     setError('')
-    setFormData({...formData, source, destination, numPassengers:travellers})
-    console.log(formData)
     if(!formData.source||!formData.destination||!formData.date)
       setError('All fields are required.')
+    else if(formData.source==formData.destination)
+      setError('Source and destination cannot be the same')
+    
+    if(error==''&&formError['source']==null&&formError['destination']==null)
+    {
+      console.log(formData)
+      dispatch(setForm(formData))
+      dispatch(searchFlights(formData)).then(()=>{
+        navigate("/flights", {state:{formData}})
+      })
+    }
   }
 
   return (
     <div className='searchbar-main'>
       <div className='searchbar-cont'>
-        <p className='tagline'>Planning to travel? We've got you
-          covered with flights at the best price.
+        <p className='tagline'>{user==null?"Planning to travel? We've got youcovered with flights at the best price.":
+        `${greeting}, ${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1).toLowerCase()}`}
         </p>
         <div className='date-details'>
           <p>{monthNames[month]} {date}, {year}</p>
@@ -147,10 +198,10 @@ const weekdayNames = [
                 <div className='from-and-to'>
                   <div className='search-input'>
                   <label for='form'>From</label>
-                      <input type="text" placeholder='Choose Aiport, City, Unique Co..' className='form-control' name='source' value={source} onChange={handleSourceChange} onFocus={handleFocus} onBlur={handleBlur}></input>
-                      {isFocussed && source &&(
-                        <div style={{marginTop:'1rem', display:'absolute'}}>
-                          {filteredAirports.length>0 && !error?(
+                      <input type="text" placeholder='Choose Aiport, City, Unique Co..' className='form-control' name='source' value={source} onChange={handleSourceChange} onFocus={()=>{setFromFocussed(true)}} onBlur={handleSourceBlur}></input>
+                      {fromFocussed && source &&(
+                        <div style={{marginTop:'1rem', marginLeft:'-15px', position:'absolute', height:'200px', overFlowY:'scroll', backgroundColor:'white', width:'280px', padding:'1rem', border:'1px solid black'}}>
+                          {filteredAirports.length>0?(
                             filteredAirports.map(airport=><div key={airport.city}>{airport.city}</div>)):
                             (<div>{error}</div>)}
                             </div>
@@ -158,10 +209,10 @@ const weekdayNames = [
                   </div>
                   <div className='search-input'>
                   <label for='form'>To</label>
-                      <input type="text" placeholder='Choose Aiport, City, Unique Co..' className='form-control' name='destination' value={destination} onChange={handleDestinationChange} onFocus={handleFocus} onBlur={handleBlur}></input>
-                      {isFocussed && destination &&(
-                        <div>
-                          {filteredAirports.length>0 && !error?(
+                      <input type="text" placeholder='Choose Aiport, City, Unique Co..' className='form-control' name='destination' value={destination} onChange={handleDestinationChange} onFocus={()=>{setToFocussed(true)}} onBlur={handleDestinationeBlur}></input>
+                      {toFocussed && destination &&(
+                        <div style={{marginTop:'1rem', marginLeft:'-15px', position:'absolute', height:'200px', overFlowY:'scroll', backgroundColor:'white', width:'280px', padding:'1rem', border:'1px solid black'}}>
+                          {filteredAirports.length>0?(
                             filteredAirports.map(airport=><div key={airport.city}>{airport.city}</div>)):
                             (<div>{error}</div>)}
                             </div>
@@ -171,11 +222,11 @@ const weekdayNames = [
                   <div className='depart-and-return'>
                     <div style={{display:'flex', flexDirection:'column'}} className='search-input'>
                     <label for='depart'>Depart</label>
-                    <input type='date' name="date" className='datepicker' value={formData.date} onChange={handleChange}></input>
+                    <input type='date' name="date" className='datepicker' value={formData.date} onChange={handleChange} min={minDate}></input>
                     </div>
                     <div style={{display:'flex', flexDirection:'column'}} className='search-input'>
                     <label for="arrive">Arrive</label>
-                    <input type='date' name='to' className='datepicker'></input>
+                    <input type='date' name='to' className='datepicker' min={minDate}></input>
                     </div>
                 </div>
               </div>
@@ -195,12 +246,17 @@ const weekdayNames = [
                   <div className='search-input travel-class'>
                   <label for='travelClass'>Travel Class</label>
                   <select class="form-select" name='travelClass' aria-label="choose travel class" value={formData.travelClass} onChange={handleChange}>
-                  <option selected value="ECONOMY">ECOMOMY</option>
+                  <option selected value="ECONOMY">ECONOMY</option>
                   <option value="PREMIUM ECONOMY">PREMIUM ECONOMY</option>
                   <option value="BUSINESS">BUSINESS</option>
                 </select>
                   </div>
                 </div>
+              </div>
+              <div style={{marginTop:'20px'}}>
+                {formError.source!=null&&<p style={{color:'red'}}>{formError.source}</p>}
+                {formError.destination!=null&&<p style={{color:'red', marginTop:'-10px'}}>{formError.destination}</p>}
+                {error&&<p style={{color:'red'}}>{error}</p>}
               </div>
               <button className='search-button'>Search</button>
             </form>

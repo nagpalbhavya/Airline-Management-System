@@ -87,6 +87,15 @@
     padding-left:30px;
 }
 
+.register-login-span{
+    text-decoration: none;
+    color:black;
+}
+
+.register-login-span:hover{
+    text-decoration:underline;
+}
+
 
 
 @media (max-width: 1200px) {

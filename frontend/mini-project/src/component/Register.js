@@ -25,7 +25,7 @@ const Register = () => {
     useEffect(()=>{
         if(registrationSuccess)
         {
-            //history.push
+            navigate('/login')
         }
     })
 
@@ -83,7 +83,7 @@ const Register = () => {
             <div className='right-side'>
                 <div className='register-headings'>
                     <h3>Create an Account</h3>
-                    <p>Already have an account? <span>Log In</span></p>
+                    <p>Already have an account? <Link to="/login" className='register-login-span'>Log In</Link></p>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className='first-last-name'>
