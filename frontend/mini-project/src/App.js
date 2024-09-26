@@ -12,6 +12,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import FlightDetail from './component/FlightDetail';
 import Payment from './component/payment-component/Payment'
 import Checkout from './component/Checkout'
+import Feedback from './component/Feedback';
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
           <Route path="/flights" element={<FlightsResultsPage/>}/>
           <Route path="/flights/:flightId" element={<FlightDetail/>}/>
           <Route path='/checkout' element={<Checkout/>}/>
-          {/* <Route path="/payment" element={<Payment/>}/> */}
+          <Route path="/payment" element={<Payment/>}/>
+          <Route path="/feedback" element={<Feedback/>}/>
         </Routes>
     </Router>
   );

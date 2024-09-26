@@ -51,7 +51,7 @@ const userSlice=createSlice({
         builder.addCase(addUser.fulfilled, (state, action)=>{
             state.status='succeded'
             state.message=action.payload
-            if(action.payload==='User registered successfully')
+            if(action.payload!=null)
                 state.registrationSuccess=true;
             else
             state.registrationSuccess=false;

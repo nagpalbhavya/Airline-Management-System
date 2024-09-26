@@ -15,9 +15,9 @@ public class BookingService
     @Autowired
     BookingDao bookingDao;
 
-    public void createBooking(Booking booking)
+    public Booking createBooking(Booking booking)
     {
-        bookingDao.addBooking(booking);
+        return bookingDao.addBooking(booking);
     }
 
     public void updateStatus(Long bookingId, BookingStatus status)

@@ -14,7 +14,14 @@ const offerSlice=createSlice({
         status:'idle',
         error:null,
     },
-    reducers:{},
+    reducers:{
+        applyOffer: (state,action)=>{
+            state.offerApplied=state.offers[action.payload];
+        },
+        removeOffer: (state,action)=>{
+            state.offerApplied=null
+        }
+    },
     extraReducers:(builder)=>{
         builder.addCase(fetchOffers.pending, (state)=>{
             state.status='loading'
@@ -29,5 +36,7 @@ const offerSlice=createSlice({
         })
     }
 })
+
+export const {applyOffer, removeOffer}=offerSlice.actions;
 
 export default offerSlice.reducer;

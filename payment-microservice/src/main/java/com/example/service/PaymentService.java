@@ -56,7 +56,7 @@ public class PaymentService
         System.out.println("updating booking status..");
         return builder.build()
             .put()
-            .uri("http://localhost:8080/booking/{bookingId}/confirm", bookingId)
+            .uri("http://localhost:8090/booking/{bookingId}/confirm", bookingId)
             .bodyValue(passengers)
             .retrieve()
             .bodyToMono(Void.class)

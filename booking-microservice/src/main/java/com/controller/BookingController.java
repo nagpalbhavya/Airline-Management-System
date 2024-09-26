@@ -26,9 +26,9 @@ public class BookingController
     BookingService bookingService;
 
     @PostMapping("/create")
-    public void createBooking(@RequestBody Booking booking)
+    public Booking createBooking(@RequestBody Booking booking)
     {
-        bookingService.createBooking(booking);
+        return bookingService.createBooking(booking);
     }
 
     @PutMapping("/updateStatus/{bookingId}/{status}")

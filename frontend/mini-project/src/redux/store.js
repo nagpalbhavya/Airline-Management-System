@@ -5,6 +5,7 @@ import airportReducer from './AirportSlice'
 import flightReducer from './FlightSlice'
 import formDataReducer from './FormDataSlice'
 import bookingReducer from './BookingSlice'
+import ownerReducer from './ownerSlice'
 
 
 const store=configureStore({
@@ -14,7 +15,8 @@ const store=configureStore({
         airport:airportReducer,
         flights:flightReducer,
         form:formDataReducer,
-        booking:bookingReducer
+        booking:bookingReducer,
+        owner:ownerReducer
     }
 })
 

@@ -48,8 +48,8 @@ const weekdayNames = [
   const [destination, setDestination]=useState('')
   const [travelDate, setTravelDate]=useState('');
   const [travelClass, setTravelClass]=useState('');
-  const [error, setError]=useState('')
-  const [formError, setFormError]=useState({})
+  const [error, setError]=useState()
+  const [formError, setFormError]=useState({source:'', destination:'', date:''})
   const [filteredAirports, setFilteredAirports]=useState([])
   const [toFocussed, setToFocussed]=useState(false)
   const [fromFocussed, setFromFocussed]=useState(false)
@@ -66,7 +66,7 @@ const weekdayNames = [
     setTravellers(prevValue=>prevValue>1?prevValue-1:prevValue);
   }
 
-  const [formData, setFormData]=useState({
+  const [formDataa, setformDataa]=useState({
     source:'',
     destination:'',
     date:'',
@@ -75,7 +75,11 @@ const weekdayNames = [
   })
 
   const handleChange=(e)=>{
-    setFormData({...formData,[e.target.name]:e.target.value})
+    setformDataa({...formDataa,[e.target.name]:e.target.value})
+    if(e.target.name=='date')
+    {
+      formError.date=e.target.value
+    }
   }
 
   const handleSourceChange=(e)=>{
@@ -110,9 +114,9 @@ const weekdayNames = [
   const filterAirports=(value, type)=>{
     setError('');
     const filtered=airports.filter(airport=>
-      (airport.city.toLowerCase().includes(value.toLowerCase())&&
-      (type==='source'?airport.city!==destination:airport.city!==source))
-    ).slice(0,3)
+      (airport.city.toLowerCase().includes(value.toLowerCase())
+      // (type==='source'?airport.city!==destination:airport.city!==source))
+    )).slice(0,3)
 
     if(filtered.length===0&&value.length>0)
       setError('Airport not found')
@@ -132,7 +136,7 @@ const weekdayNames = [
     else
     {
       setSource(res.city)
-      setFormData({...formData, source})
+      setformDataa({...formDataa, source:source})
       newError['source']=null
       setFormError((prevErrors)=>({...prevErrors, ...newError}))
     }
@@ -150,14 +154,14 @@ const weekdayNames = [
     else
     {
       setDestination(res.city)
-      setFormData({...formData, destination})
+      setformDataa({...formDataa, destination:destination})
       newError['destination']=null
       setFormError((prevErrors)=>({...prevErrors, ...newError}))
     }
   }
 
   useEffect(()=>{
-    setFormData({...formData, numPassengers:travellers})
+    setformDataa({...formDataa, numPassengers:travellers})
   },[travellers])
 
 
@@ -165,17 +169,21 @@ const weekdayNames = [
   const handleSearch=(e)=>{
     e.preventDefault();
     setError('')
-    if(!formData.source||!formData.destination||!formData.date)
+    setformDataa({...formDataa, source:source,destination:destination})
+    if(!formDataa.source||!formDataa.destination||!formDataa.date)
       setError('All fields are required.')
-    else if(formData.source==formData.destination)
+    else if(formDataa.source==formDataa.destination)
       setError('Source and destination cannot be the same')
     
-    if(error==''&&formError['source']==null&&formError['destination']==null)
+    console.log(error)
+    console.log(formError)
+    if(error==''&&formError['source']==null&&formError['destination']==null&&formError.date!='')
     {
-      console.log(formData)
-      dispatch(setForm(formData))
-      dispatch(searchFlights(formData)).then(()=>{
-        navigate("/flights", {state:{formData}})
+      console.log(error)
+      console.log(formDataa)
+      dispatch(setForm(formDataa))
+      dispatch(searchFlights(formDataa)).then(()=>{
+        navigate("/flights")
       })
     }
   }
@@ -183,7 +191,7 @@ const weekdayNames = [
   return (
     <div className='searchbar-main'>
       <div className='searchbar-cont'>
-        <p className='tagline'>{user==null?"Planning to travel? We've got youcovered with flights at the best price.":
+        <p className='tagline' style={{color:'black'}}>{user==null?"Planning to travel? We've got youcovered with flights at the best price.":
         `${greeting}, ${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1).toLowerCase()}`}
         </p>
         <div className='date-details'>
@@ -222,10 +230,10 @@ const weekdayNames = [
                   <div className='depart-and-return'>
                     <div style={{display:'flex', flexDirection:'column'}} className='search-input'>
                     <label for='depart'>Depart</label>
-                    <input type='date' name="date" className='datepicker' value={formData.date} onChange={handleChange} min={minDate}></input>
+                    <input type='date' name="date" className='datepicker' value={formDataa.date} onChange={handleChange} min={minDate}></input>
                     </div>
                     <div style={{display:'flex', flexDirection:'column'}} className='search-input'>
-                    <label for="arrive">Arrive</label>
+                    <label for="arrive">Return</label>
                     <input type='date' name='to' className='datepicker' min={minDate}></input>
                     </div>
                 </div>
@@ -245,7 +253,7 @@ const weekdayNames = [
                   </div>
                   <div className='search-input travel-class'>
                   <label for='travelClass'>Travel Class</label>
-                  <select class="form-select" name='travelClass' aria-label="choose travel class" value={formData.travelClass} onChange={handleChange}>
+                  <select class="form-select" name='travelClass' aria-label="choose travel class" value={formDataa.travelClass} onChange={handleChange}>
                   <option selected value="ECONOMY">ECONOMY</option>
                   <option value="PREMIUM ECONOMY">PREMIUM ECONOMY</option>
                   <option value="BUSINESS">BUSINESS</option>

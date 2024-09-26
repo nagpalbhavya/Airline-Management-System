@@ -10,9 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PassengerModel 
 {
-    private String firstName;
-    private String lastName;
-    private LocalDateTime dob;
+    private String name;
+    private String email;
     private String travelClass;
     private int baggageAllowance;
 }

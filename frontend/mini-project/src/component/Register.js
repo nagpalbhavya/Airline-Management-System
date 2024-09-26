@@ -115,7 +115,7 @@ const Register = () => {
                     {errors.email&&<><span className='error'>{errors.email}</span><br /></>}
                     {errors.password&&<><span className='error'>{errors.password}</span><br /></>}
                     {console.log(userStatus) }
-                    {registrationMessage&&<p style={{fontSize:'18px'}}>{registrationMessage}</p>}
+                    {registrationSuccess==true?<p style={{fontSize:'18px'}}>Registration Successful</p>:<p style={{fontSize:'18px', color:'red'}}>Registration Failed</p>}
                     </div>
                     <button className='btn btn-primary create-account-button'>Create account</button>
                 </form>
