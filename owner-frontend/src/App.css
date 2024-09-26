@@ -1,0 +1,367 @@
+/* Overall Layout */
+body {
+  background-color: #fffbd8;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 950px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar */
+.navbar {
+  
+  color: #1b1616;
+  padding: 15px;
+}
+
+.navbar .navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: bold;
+  color: #161515;
+  margin-left: 320px ;
+}
+
+.navbar .nav {
+  display: flex;
+}
+
+.mr-auto button{
+  background-color: #0062cc;
+  text-decoration: none;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.mr-auto Nav.link{
+  text-decoration: none;
+}
+
+.navbar .nav button:hover {
+  background-color: #0056b3;
+}
+
+.greeting {
+  font-family: 'Poppins', sans-serif; /* A stylish Google font */
+  font-weight: 600; 
+  font-size: 28px;
+  margin-right: 60px;
+  margin-left: 320px;
+}
+
+.navbar .time {
+  background-color: #f5f118;
+  font-size: 16px;
+}
+
+/* Form Elements */
+form input[type="text"],
+form input[type="password"],
+form input[type="number"],
+form input[type="email"],
+form input[type="datetime-local"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+form button {
+  background-color: #FFD54F;
+  color: rgb(7, 6, 6);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align: center;
+  margin-left: 250px;
+
+  width: 40%;
+}
+
+form button:hover {
+  background-color: #218838;
+}
+
+/* Table */
+.table-container {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+table td button {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+table td button:hover {
+  background-color: #c82333;
+}
+
+/* Flight Status */
+.status-on-time {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.status-delayed {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.status-cancelled {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Time Display */
+.time-display {
+  font-size: 18px;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* Offer/Promotion Listing */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #f8f9fa;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+ul li p {
+  margin: 0;
+  
+}
+
+ul li button {
+  background-color: #ffc107;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+ul li button:hover {
+  background-color: #e0a800;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Flight View */
+.flight-table-container {
+  margin-top: 20px;
+}
+
+.flight-table th, .flight-table td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: left;
+}
+
+.flight-table th {
+  background-color: #f8f9fa;
+}
+
+.flight-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.flight-table td .status {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.flight-table td .on-time {
+  color: #28a745;
+}
+
+.flight-table td .delayed {
+  color: #ffc107;
+}
+
+.flight-table td .cancelled {
+  color: #dc3545;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .navbar .nav {
+    flex-direction: column;
+  }
+
+  table, th, td {
+    font-size: 14px;
+  }
+
+  form button {
+    width: 100%;
+  }
+}
+
+/* Parent Container (Flexbox Layout) */
+.time-date-container {
+  display: flex; /* Using flexbox */
+  gap: 15px; /* Creates space between date and time containers */
+  justify-content: center; /* Centering the content */
+  align-items: center; /* Vertically aligning the content */
+  margin: 20px 0;
+  column-gap: 100px; /* Adding some margin around the container */
+}
+
+/* Date Container */
+.date-container {
+  background-color: #FFD54F; /* Yellow background for date */
+  color: #000; /* Black text for contrast */
+  padding: 10px 150px; /* Adding padding inside the box */
+  border-radius: 12px; /* Rounded corners */
+  font-size: 16px; /* Adjusting font size */
+  font-weight: bold;
+  margin-left: 0px; /* Making the text bold */
+}
+
+/* Time Container */
+.time-container {
+  background-color: #FFD54F; /* Yellow background for time */
+  color: #000; /* Black text for contrast */
+  padding: 10px 100px; /* Adding padding inside the box */
+  border-radius: 12px; /* Rounded corners */
+  font-size: 16px; /* Adjusting font size */
+  font-weight: bold;
+  margin-right: 100px; /* Making the text bold */
+}
+
+/* General Button Style for Navbar */
+.navbar .nav button {
+  background-color: #D3D3D3; /* Grey background */
+  color: black; /* Black text */
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth background color change */
+}
+
+.navbar .nav button:hover {
+  background-color: #B0B0B0; /* Darker grey on hover */
+}
+
+.navbar .nav button a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Active link - highlights the current page in blue */
+.navbar .nav .active {
+  background-color: #0062cc; /* Blue background for the active page */
+  color: white; /* White text for the active button */
+}
+
+/* Make sure the text inside links maintains its color */
+.navbar .nav button a.active {
+  color: white;
+}
+
+/* Style to ensure buttons are aligned properly */
+.navbar .nav {
+  display: flex;
+  justify-content: center;
+  column-gap: 100px;
+}
+
+/* Remove button outlines on click */
+.navbar .nav button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.flights-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.flights-table th, .flights-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.flights-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f2f2f2;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
