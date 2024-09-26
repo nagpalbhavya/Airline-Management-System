@@ -1,0 +1,71 @@
+import { configureStore, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+// Initial state
+const initialState = {
+  selectedButton: '',
+  showFlightTable: false,
+  showAddFlightForm: false,
+  showRemoveFlightTable: false,
+  showUpdateFlightStatusTable: false,
+  flights: [] // Array to store flight data
+};
+
+// // Thunks for async actions (you can replace with actual endpoints)
+// export const fetchFlights = createAsyncThunk('flights/fetchFlights', async () => {
+//   const response = await axios.get('/api/flights');
+//   return response.data;
+// });
+
+// export const deleteFlight = createAsyncThunk('flights/deleteFlight', async (flightId) => {
+//   await axios.delete(`/api/flights/${flightId}`);
+//   return flightId;
+// });
+
+// export const updateFlightStatus = createAsyncThunk('flights/updateFlightStatus', async ({ flightId, status }) => {
+//   await axios.put(`/api/flights/${flightId}`, { status });
+//   return { flightId, status };
+// });
+
+// Slice
+const dashboardSlice = createSlice({
+  name: 'dashboard',
+  initialState,
+  reducers: {
+    setSelectedButton: (state, action) => {
+      state.selectedButton = action.payload;
+      state.showFlightTable = action.payload === 'viewFlights';
+      state.showAddFlightForm = action.payload === 'addFlights';
+      state.showRemoveFlightTable = action.payload === 'removeFlights';
+      state.showUpdateFlightStatusTable = action.payload === 'updateStatus';
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchFlights.fulfilled, (state, action) => {
+        state.flights = action.payload;
+      })
+      .addCase(deleteFlight.fulfilled, (state, action) => {
+        state.flights = state.flights.filter(flight => flight.id !== action.payload);
+      })
+      .addCase(updateFlightStatus.fulfilled, (state, action) => {
+        const { flightId, status } = action.payload;
+        const flight = state.flights.find(flight => flight.id === flightId);
+        if (flight) {
+          flight.status = status;
+        }
+      });
+  }
+});
+
+// Export actions
+export const { setSelectedButton } = dashboardSlice.actions;
+
+// Configure store
+const store = configureStore({
+  reducer: {
+    dashboard: dashboardSlice.reducer,
+  }
+});
+
+export default store;

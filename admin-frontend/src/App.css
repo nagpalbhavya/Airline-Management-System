@@ -1,0 +1,214 @@
+/* Reset styles for consistent appearance */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #fffbd8;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling for time and date in the info section */
+.info .time,
+.info .date {
+  background-color: #FFD54F;
+  color: #000;
+  padding: 10px 50px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.info .date {
+  margin-left: 0;
+}
+
+/* Container styling */
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 950px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 50px;
+  border-bottom: 2px solid #d3d3d3;
+}
+
+.logo-section h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+}
+
+.greeting {
+  font-size: 18px;
+  color: black;
+  margin-top: 10px;
+}
+
+/* Flexbox layout for the info section */
+.info {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  border-radius: 0;
+  margin-bottom: 20px;
+}
+
+.info div {
+  background-color: #ffcc6e;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+}
+
+/* Buttons styling */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 2px solid #d3d3d3;
+}
+
+.buttons button {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.blue-button {
+  background-color: #0095ff;
+  color: white;
+}
+
+.gray-button {
+  background-color: #d3d3d3;
+  color: black;
+}
+
+/* Flight table styling */
+.flight-table {
+  background-color: #303030;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: #303030;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+tbody td {
+  padding: 10px;
+  text-align: left;
+  color: white;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.on-time {
+  color: #00FF00;
+}
+
+/* Add Flight Form Section */
+.add-flight-form {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #ffcc6e;
+  border-radius: 10px;
+}
+
+.add-flight-form input,
+.add-flight-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+}
+
+/* Add flight button */
+.add-flight-button {
+  display: block;
+  align-self: center;
+  width: 100%;
+  background-color: #ffa500;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Stack info section vertically */
+  .info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Stack buttons vertically */
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttons button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Full width input fields for the add flight form */
+  .add-flight-form input,
+  .add-flight-form select {
+    width: 100%;
+  }
+
+  /* Adjust flight table to fit smaller screens */
+  table,
+  .flight-table {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  /* Adjust header padding for smaller screens */
+  .header {
+    padding: 15px 20px;
+  }
+}
